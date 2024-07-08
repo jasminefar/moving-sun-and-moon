@@ -1,0 +1,144 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #40405a;
+  margin: 0;
+  overflow: hidden;
+}
+
+.day-night-toggle {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  background-color: #ccc;
+  border-radius: 34px;
+  cursor: pointer;
+}
+
+.switch:before {
+  content: "";
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: white;
+  top: 4px;
+  left: 4px;
+  transition: .4s;
+}
+
+input:checked + .switch:before {
+  transform: translateX(26px);
+}
+
+input {
+  opacity: 0;
+  position: absolute;
+}
+
+.scene {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  transition: background-color 1s;
+}
+
+.day, .night {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: opacity 1s;
+}
+
+.day {
+  background-color: #87CEEB;
+  z-index: 1;
+}
+
+.night {
+  background-color: #2C3E50;
+  z-index: 0;
+  opacity: 0;
+}
+
+input:checked ~ .scene .day {
+  opacity: 0;
+}
+
+input:checked ~ .scene .night {
+  opacity: 1;
+}
+
+.sun {
+  position: absolute;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  background-color: #FFD700;
+  top: 50px;
+  left: 50px;
+  box-shadow: 0 0 50px #FFA500;
+  animation: sun-move 10s linear infinite;
+}
+
+.moon {
+  position: absolute;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  background-color: #F8F9FA;
+  top: 50px;
+  left: 50px;
+  box-shadow: 0 0 20px #B0C4DE;
+  animation: moon-move 10s linear infinite;
+}
+
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  box-shadow: 0px 0px 0px 1px #fff, 50px 50px 0 1px #fff, 100px 100px 0 1px #fff, 150px 150px 0 1px #fff, 200px 200px 0 1px #fff;
+  animation: stars 1s infinite alternate;
+}
+
+@keyframes sun-move {
+  0%, 100% {
+    top: 50px;
+    left: 50px;
+  }
+  50% {
+    top: 20px;
+    left: 80%;
+  }
+}
+
+@keyframes moon-move {
+  0%, 100% {
+    top: 50px;
+    left: 50px;
+  }
+  50% {
+    top: 20px;
+    left: 80%;
+  }
+}
+
+@keyframes stars {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
